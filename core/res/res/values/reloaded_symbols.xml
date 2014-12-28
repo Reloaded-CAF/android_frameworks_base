@@ -27,4 +27,8 @@
   <java-symbol type="array" name="config_blockPackagesSensorDrain" />
 
   <java-symbol type="array" name="config_vendorPlatformSignatures" />
+
+  <!-- Screenrecord -->
+  <java-symbol type="bool" name="config_enableScreenrecordChord" />
+
 </resources>

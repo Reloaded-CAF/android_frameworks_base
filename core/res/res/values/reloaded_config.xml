@@ -20,9 +20,9 @@
 
   <!-- Package Manager -->
   <java-symbol type="array" name="config_disabledComponents" />
-
+  
   <!-- Any package that has one of the package names defined below will be prevented
-         from using specific sensors in order to stop battery drain -->
+        from using specific sensors in order to stop battery drain -->
   <string-array name="config_blockPackagesSensorDrain">
       <item>com.whatsapp</item>
       <item>com.gbwhatsapp</item>
@@ -32,9 +32,13 @@
       <item>org.telegram.messenger.plus</item>
       <item>com.snapchat.android</item>
   </string-array>
-
+  
   <!-- The list of vendor package signatures that should also be considered
        platform signatures, specifically for use on devices with a vendor partition. -->
   <string-array name="config_vendorPlatformSignatures">
   </string-array>
+  
+  <!-- If this is true, key chords can be used to take a screen record on the device. -->
+  <bool name="config_enableScreenrecordChord">true</bool>
+
 </resources>
