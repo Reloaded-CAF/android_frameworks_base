@@ -38,6 +38,12 @@
         android:title="@string/lockscreen_unlock_right"
         sysui:defValue="true" />
         
+    <com.android.systemui.reloaded.SystemSettingSwitchPreference
+        android:key="lockscreen_quick_unlock_control"
+        android:title="@string/unlock_quick_unlock_control_title"
+        android:summary="@string/unlock_quick_unlock_control_summary"
+        android:defaultValue="false" />
+        
     <com.android.systemui.reloaded.SecureSettingSwitchPreference
         android:key="face_auto_unlock"
         android:title="@string/face_auto_unlock_title"
