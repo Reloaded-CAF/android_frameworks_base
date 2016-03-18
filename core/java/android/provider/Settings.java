@@ -4131,6 +4131,11 @@ public final class Settings {
          * the setting value. See an example above.
          */
 
+        /** Whether to skip music track with volume rocker
+         *  @hide
+         */
+        public static final String VOLUME_BUTTON_MUSIC_CONTROL = "volume_button_music_control";
+
         /**
          * @hide
          */
