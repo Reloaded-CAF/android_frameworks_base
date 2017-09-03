@@ -101,5 +101,7 @@ interface IStatusBarService
     // Used to hide the fingerprint dialog when the authenticationclient is stopped
     void hideFingerprintDialog();
 
+    void toggleCameraFlash();
+    
     void toggleNavigationBar(boolean enable);
 }

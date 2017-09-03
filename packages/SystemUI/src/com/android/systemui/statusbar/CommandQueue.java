@@ -93,7 +93,8 @@ public class CommandQueue extends IStatusBar.Stub {
     private static final int MSG_SHOW_CHARGING_ANIMATION       = 44 << MSG_SHIFT;
     private static final int MSG_SHOW_PINNING_TOAST_ENTER_EXIT = 45 << MSG_SHIFT;
     private static final int MSG_SHOW_PINNING_TOAST_ESCAPE     = 46 << MSG_SHIFT;
-    private static final int MSG_TOGGLE_NAVIGATION_BAR         = 47 << MSG_SHIFT;
+    private static final int MSG_TOGGLE_CAMERA_FLASH           = 47 << MSG_SHIFT;
+    private static final int MSG_TOGGLE_NAVIGATION_BAR         = 48 << MSG_SHIFT;
 
     public static final int FLAG_EXCLUDE_NONE = 0;
     public static final int FLAG_EXCLUDE_SEARCH_PANEL = 1 << 0;
@@ -167,6 +168,8 @@ public class CommandQueue extends IStatusBar.Stub {
         default void onFingerprintError(String error) { }
         default void hideFingerprintDialog() { }
 
+        default void toggleCameraFlash() { }
+        
         default void toggleNavigationBar(boolean enable) { }
     }
 
@@ -554,6 +557,13 @@ public class CommandQueue extends IStatusBar.Stub {
         }
     }
 
+    public void toggleCameraFlash() {
+        synchronized (mLock) {
+            mHandler.removeMessages(MSG_TOGGLE_CAMERA_FLASH);
+            mHandler.sendEmptyMessage(MSG_TOGGLE_CAMERA_FLASH);
+        }
+    }
+    
     public void toggleNavigationBar(boolean enable) {
         synchronized (mLock) {
             mHandler.removeMessages(MSG_TOGGLE_NAVIGATION_BAR);
@@ -805,6 +815,11 @@ public class CommandQueue extends IStatusBar.Stub {
                 case MSG_SHOW_PINNING_TOAST_ESCAPE:
                     for (int i = 0; i < mCallbacks.size(); i++) {
                         mCallbacks.get(i).showPinningEscapeToast();
+                    }
+                    break;
+                case MSG_TOGGLE_CAMERA_FLASH:
+                    for (int i = 0; i < mCallbacks.size(); i++) {
+                        mCallbacks.get(i).toggleCameraFlash();
                     }
                     break;
                 case MSG_TOGGLE_NAVIGATION_BAR:
