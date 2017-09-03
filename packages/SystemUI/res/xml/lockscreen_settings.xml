@@ -43,5 +43,13 @@
         android:title="@string/face_auto_unlock_title"
         android:summary="@string/face_auto_unlock_summary"
         android:defaultValue="false" />
+        
+    <com.android.systemui.reloaded.SecureSettingListPreference
+        android:key="torch_power_button_gesture"
+        android:title="@string/torch_power_button_gesture_title"
+        android:dialogTitle="@string/torch_power_button_gesture_title"
+        android:entries="@array/torch_power_button_gesture_entries"
+        android:entryValues="@array/torch_power_button_gesture_values"
+        android:defaultValue="0" />
 
 </PreferenceScreen>

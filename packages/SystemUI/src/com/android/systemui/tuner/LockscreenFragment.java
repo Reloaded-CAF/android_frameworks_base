@@ -18,6 +18,7 @@ import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.LauncherActivityInfo;
@@ -30,10 +31,13 @@ import android.graphics.drawable.ScaleDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Process;
+import android.provider.Settings;
 import android.support.v14.preference.PreferenceFragment;
 import android.support.v14.preference.SwitchPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceGroup;
+import android.support.v7.preference.PreferenceScreen;
+import android.support.v7.preference.ListPreference;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
@@ -46,7 +50,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.internal.util.reloaded.ReloadedUtils;
 import com.android.systemui.Dependency;
 import com.android.systemui.R;
 import com.android.systemui.plugins.IntentButtonProvider.IntentButton;
@@ -61,12 +67,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
-public class LockscreenFragment extends PreferenceFragment {
+public class LockscreenFragment extends PreferenceFragment implements Preference.OnPreferenceChangeListener {
 
     private static final String KEY_LEFT = "left";
     private static final String KEY_RIGHT = "right";
     private static final String KEY_CUSTOMIZE = "customize";
     private static final String KEY_SHORTCUT = "shortcut";
+    private static final String TORCH_POWER_BUTTON_GESTURE = "torch_power_button_gesture";
+    private ListPreference mTorchPowerButton;
 
     public static final String LOCKSCREEN_LEFT_BUTTON = "sysui_keyguard_left";
     public static final String LOCKSCREEN_LEFT_UNLOCK = "sysui_keyguard_left_unlock";
@@ -84,6 +92,37 @@ public class LockscreenFragment extends PreferenceFragment {
         addPreferencesFromResource(R.xml.lockscreen_settings);
         setupGroup(LOCKSCREEN_LEFT_BUTTON, LOCKSCREEN_LEFT_UNLOCK);
         setupGroup(LOCKSCREEN_RIGHT_BUTTON, LOCKSCREEN_RIGHT_UNLOCK);
+        
+        PreferenceScreen prefSet = getPreferenceScreen();
+        if (!ReloadedUtils.deviceSupportsFlashLight(getContext())) {
+            Preference toRemove = prefSet.findPreference(TORCH_POWER_BUTTON_GESTURE);
+            if (toRemove != null) {
+                prefSet.removePreference(toRemove);
+            }
+        } else {
+            mTorchPowerButton = (ListPreference) findPreference(TORCH_POWER_BUTTON_GESTURE);
+            mTorchPowerButton.setOnPreferenceChangeListener(this);
+        }
+    }
+    
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object objValue) {
+        ContentResolver resolver = getActivity().getContentResolver();
+        if (preference == mTorchPowerButton) {
+            int torchPowerButtonValue = Integer.valueOf((String) objValue);
+            boolean doubleTapCameraGesture = Settings.Secure.getInt(resolver,
+                    Settings.Secure.CAMERA_DOUBLE_TAP_POWER_GESTURE_DISABLED, 0) == 0;
+            if (torchPowerButtonValue == 1 && doubleTapCameraGesture) {
+                // if double-tap for torch is enabled, switch off double-tap for camera
+                Settings.Secure.putInt(resolver,
+                        Settings.Secure.CAMERA_DOUBLE_TAP_POWER_GESTURE_DISABLED, 1);
+                Toast.makeText(getActivity(),
+                        (R.string.torch_power_button_gesture_dt_toast),
+                        Toast.LENGTH_SHORT).show();
+            }
+            return true;
+        }
+        return false;
     }
 
     @Override
