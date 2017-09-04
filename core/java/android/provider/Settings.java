@@ -4638,6 +4638,16 @@ public final class Settings {
                 BOOLEAN_VALIDATOR;
 
         /**
+        * Whether to allow battery light
+        * @hide
+        */
+        public static final String BATTERY_LIGHT_ENABLED = "battery_light_enabled";
+
+        /** @hide */
+        public static final Validator BATTERY_LIGHT_ENABLED_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -4719,6 +4729,7 @@ public final class Settings {
             SWIPE_TO_SCREENSHOT,
             LOCKSCREEN_BATTERY_INFO,
             BACK_GESTURE_HEIGHT,
+            BATTERY_LIGHT_ENABLED,
         };
 
         /**
@@ -4855,6 +4866,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SWIPE_TO_SCREENSHOT);
             PRIVATE_SETTINGS.add(LOCKSCREEN_BATTERY_INFO);
             PRIVATE_SETTINGS.add(BACK_GESTURE_HEIGHT);
+            PRIVATE_SETTINGS.add(BATTERY_LIGHT_ENABLED);
         }
 
         /**
@@ -4965,6 +4977,7 @@ public final class Settings {
             VALIDATORS.put(SWIPE_TO_SCREENSHOT, SWIPE_TO_SCREENSHOT_VALIDATOR);
             VALIDATORS.put(LOCKSCREEN_BATTERY_INFO, LOCKSCREEN_BATTERY_INFO_VALIDATOR);
             VALIDATORS.put(BACK_GESTURE_HEIGHT, BACK_GESTURE_HEIGHT_VALIDATOR);
+            VALIDATORS.put(BATTERY_LIGHT_ENABLED, BATTERY_LIGHT_ENABLED_VALIDATOR);
         }
 
         /**
