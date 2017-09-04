@@ -45,4 +45,7 @@
     <!-- Performance Profiles -->
     <java-symbol type="bool" name="config_hasPerformanceProfiles" />
 
+    <!-- Leds -->
+    <java-symbol type="bool" name="config_intrusiveBatteryLed" />
+
 </resources>
