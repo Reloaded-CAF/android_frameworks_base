@@ -41,6 +41,7 @@ import com.android.systemui.qs.tiles.PowerTile;
 import com.android.systemui.qs.tiles.NfcTile;
 import com.android.systemui.qs.tiles.NightDisplayTile;
 import com.android.systemui.qs.tiles.RotationLockTile;
+import com.android.systemui.qs.tiles.ScreenshotTile;
 import com.android.systemui.qs.tiles.UserTile;
 import com.android.systemui.qs.tiles.WifiTile;
 import com.android.systemui.qs.tiles.WorkModeTile;
@@ -107,6 +108,8 @@ public class QSFactoryImpl implements QSFactory {
                 return new PowerTile(mHost);
             case "heads_up":
                 return new HeadsUpTile(mHost);
+            case "screenshot":
+                return new ScreenshotTile(mHost);
         }
 
         // Intent tiles.

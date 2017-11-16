@@ -86,6 +86,9 @@
     <string name="network_traffic_state_title">Network traffic</string>
     <string name="network_traffic_state_title_summary">Show net activity in statusbar</string>
     <string name="network_traffic_autohide_threshold_title">Net traffic autohide threshold (KB/s)</string>
+    
+    <!-- Screenshot -->
+    <string name="quick_settings_screenshot_label">Screenshot</string>
 
     <!-- Status Bar -->
     <string name="status_bar_icons_title">Status bar icons</string>
