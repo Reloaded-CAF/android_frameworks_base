@@ -95,11 +95,12 @@
     <string name="status_bar_battery_percentage_text_inside">Inside the icon</string>
     <string name="status_bar_battery_percentage_text_next">Next to the icon</string>
 
-    <!-- Toggle navigation bar -->
-    <string name="navigation_bar_enabled_title">Enable navigation bar</string>
-
-    <!-- Status bar - Battery -->
+    <!-- Status bar - Clock -->
     <string name="status_bar_clock_title">Clock</string>
     <string name="status_bar_clock_enable">Show clock</string>
+
+    <!-- Navigation bar -->
+    <string name="navigation_bar_enabled_title">Enable navigation bar</string>
+    <string name="navigation_bar_layout_inverse">Invert layout</string>
 
 </resources>

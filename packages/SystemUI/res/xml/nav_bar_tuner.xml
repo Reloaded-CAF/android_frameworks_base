@@ -22,6 +22,10 @@
         android:key="navigation_bar_enabled"
         android:title="@string/navigation_bar_enabled_title"
         android:defaultValue="true" />
+        
+    <com.android.systemui.tuner.TunerSwitch
+        android:key="sysui_nav_bar_inverse"
+        android:title="@string/navigation_bar_layout_inverse" />
 
     <com.android.systemui.tuner.RadioListPreference
         android:key="layout"
