@@ -1,5 +1,6 @@
 package com.android.systemui.qs;
 
+import android.content.ContentResolver;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
@@ -384,10 +385,17 @@ public class PagedTileLayout extends ViewPager implements QSTileLayout {
 
         private int getRows() {
             final Resources res = getContext().getResources();
-            int defaultRows = Math.max(1, res.getInteger(R.integer.quick_settings_num_rows));
-            return Settings.System.getIntForUser(
-                    mContext.getContentResolver(), Settings.System.QS_LAYOUT_ROWS, defaultRows,
-                    UserHandle.USER_CURRENT);
+            final ContentResolver resolver = mContext.getContentResolver();
+
+            if (res.getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                return Settings.System.getIntForUser(resolver,
+                        Settings.System.QS_LAYOUT_ROWS, 3,
+                        UserHandle.USER_CURRENT);
+            }
+
+            return Settings.System.getIntForUser(resolver,
+                        Settings.System.QS_LAYOUT_ROWS_LANDSCAPE, 2,
+                        UserHandle.USER_CURRENT);
         }
 
         public boolean isFull() {
