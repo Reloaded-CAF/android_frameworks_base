@@ -4137,6 +4137,12 @@ public final class Settings {
         * @hide
         */
         public static final String BATTERY_LIGHT_ENABLED = "battery_light_enabled";
+        
+        /**
+         * Whether to use old mobile data icons
+         * @hide
+         */
+        public static final String USE_OLD_MOBILETYPE = "use_old_mobiletype";
 
         /**
          * IMPORTANT: If you add a new public settings you also have to add it to
@@ -4458,6 +4464,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(QS_LAYOUT_ROWS_LANDSCAPE);
             PRIVATE_SETTINGS.add(QS_TILE_HIDE_TITLE);
             PRIVATE_SETTINGS.add(BATTERY_LIGHT_ENABLED);
+            PRIVATE_SETTINGS.add(USE_OLD_MOBILETYPE);
         }
 
         /**
