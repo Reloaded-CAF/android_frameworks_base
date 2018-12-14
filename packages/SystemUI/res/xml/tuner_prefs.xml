@@ -20,7 +20,7 @@
 
     <PreferenceScreen
         android:key="status_bar"
-        android:title="@string/status_bar" >
+        android:title="@string/status_bar_icons_title" >
 
         <com.android.systemui.tuner.StatusBarSwitch
             android:key="rotate"
@@ -141,8 +141,8 @@
             android:fragment="com.android.systemui.tuner.PluginFragment" />
 
     <!-- Warning, this goes last. -->
-    <Preference
+    <!--Preference
         android:summary="@string/tuner_persistent_warning"
-        android:selectable="false" />
+        android:selectable="false" /-->
 
 </PreferenceScreen>
