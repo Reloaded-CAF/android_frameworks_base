@@ -139,6 +139,17 @@
             android:key="plugins"
             android:title="@string/plugins"
             android:fragment="com.android.systemui.tuner.PluginFragment" />
+            
+    <PreferenceCategory
+        android:title="@string/network_traffic_state_title" >
+
+        <com.android.systemui.reloaded.SystemSettingSwitchPreference
+            android:key="network_traffic_state"
+            android:title="@string/network_traffic_state_title"
+            android:summary="@string/network_traffic_state_title_summary"
+            android:defaultValue="false" />
+
+    </PreferenceCategory>
 
     <!-- Warning, this goes last. -->
     <!--Preference
