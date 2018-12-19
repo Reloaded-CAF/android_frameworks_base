@@ -18,6 +18,11 @@
     xmlns:sysui="http://schemas.android.com/apk/res-auto"
     android:title="@string/nav_bar">
 
+    <com.android.systemui.reloaded.SecureSettingSwitchPreference
+        android:key="navigation_bar_enabled"
+        android:title="@string/navigation_bar_enabled_title"
+        android:defaultValue="true" />
+
     <com.android.systemui.tuner.RadioListPreference
         android:key="layout"
         android:title="@string/nav_bar_layout"
