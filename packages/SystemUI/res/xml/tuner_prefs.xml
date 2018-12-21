@@ -84,13 +84,6 @@
             android:key="alarm_clock"
             android:title="@string/status_bar_alarm" />
 
-        <!-- secure -->
-
-        <com.android.systemui.tuner.ClockPreference
-            android:title="@string/tuner_time"
-            android:summary="%s"
-            android:entries="@array/clock_options" />
-
     </PreferenceScreen>
 
     <PreferenceScreen
@@ -151,6 +144,15 @@
             android:entries="@array/status_bar_battery_percentage_entries"
             android:entryValues="@array/status_bar_battery_percentage_values"
             android:defaultValue="0" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/status_bar_clock_title" >
+
+        <com.android.systemui.tuner.StatusBarSwitch
+            android:key="clock"
+            android:title="@string/status_bar_clock_enable" />
 
     </PreferenceCategory>
 

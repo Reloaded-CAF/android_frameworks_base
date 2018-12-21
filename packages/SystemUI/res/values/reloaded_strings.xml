@@ -98,4 +98,8 @@
     <!-- Toggle navigation bar -->
     <string name="navigation_bar_enabled_title">Enable navigation bar</string>
 
+    <!-- Status bar - Battery -->
+    <string name="status_bar_clock_title">Clock</string>
+    <string name="status_bar_clock_enable">Show clock</string>
+
 </resources>
