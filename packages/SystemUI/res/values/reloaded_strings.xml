@@ -103,4 +103,8 @@
     <string name="navigation_bar_enabled_title">Enable navigation bar</string>
     <string name="navigation_bar_layout_inverse">Invert layout</string>
 
+    <!-- Facelock toggle -->
+    <string name="face_auto_unlock_title">Face auto unlock</string>
+    <string name="face_auto_unlock_summary">Dismiss lockscreen after face unlocking</string>
+
 </resources>
