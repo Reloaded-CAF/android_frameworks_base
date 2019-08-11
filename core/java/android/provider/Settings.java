@@ -4527,12 +4527,19 @@ public final class Settings {
         /** @hide */
         private static final Validator DOUBLE_TAP_SLEEP_LOCKSCREEN_VALIDATOR =
                 BOOLEAN_VALIDATOR;
-                
+
          /**
           * Disable Screenshot shutter sound
           * @hide
           */
         public static final String SCREENSHOT_SHUTTER_SOUND = "screenshot_shutter_sound";
+
+        /**
+         * Screenshod sound enable, This is the noise made when taking a screesnhot
+         * Defaults to 1 - sounds enabled
+         * @hide
+         */
+        public static final String SCREENSHOT_SOUND = "screenshot_sound";
 
         /** @hide */
         private static final Validator SCREENSHOT_SHUTTER_SOUND_VALIDATOR =
