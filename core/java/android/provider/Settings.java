@@ -4695,6 +4695,16 @@ public final class Settings {
                 BOOLEAN_VALIDATOR;
 
         /**
+         * Whether to hide gesture pill
+         * @hide
+         */
+        public static final String GESTURE_PILL_TOGGLE = "gesture_pill_toggle";
+
+        /** @hide */
+        private static final Validator GESTURE_PILL_TOGGLE_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -4780,6 +4790,7 @@ public final class Settings {
             BATTERY_LIGHT_ENABLED,
             NETWORK_TRAFFIC_MODE,
             NETWORK_TRAFFIC_AUTOHIDE,
+            GESTURE_PILL_TOGGLE,
         };
 
         /**
@@ -4920,6 +4931,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(BATTERY_LIGHT_ENABLED);
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_MODE);
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_AUTOHIDE);
+            PRIVATE_SETTINGS.add(GESTURE_PILL_TOGGLE);
         }
 
         /**
@@ -5034,6 +5046,7 @@ public final class Settings {
             VALIDATORS.put(BATTERY_LIGHT_ENABLED, BATTERY_LIGHT_ENABLED_VALIDATOR);
             VALIDATORS.put(NETWORK_TRAFFIC_MODE, NETWORK_TRAFFIC_MODE_VALIDATOR);
             VALIDATORS.put(NETWORK_TRAFFIC_AUTOHIDE, NETWORK_TRAFFIC_AUTOHIDE_VALIDATOR);
+            VALIDATORS.put(GESTURE_PILL_TOGGLE, GESTURE_PILL_TOGGLE_VALIDATOR);
         }
 
         /**
