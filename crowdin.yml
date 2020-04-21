@@ -1,0 +1,5 @@
+files:
+  - source: /core/res/res/values/reloaded_strings.xml
+    translation: /core/res/res/values-%two_letters_code%/%original_file_name%
+  - source: /packages/SystemUI/res/values/reloaded_strings.xml
+    translation: /packages/SystemUI/res/values-%two_letters_code%/%original_file_name%
