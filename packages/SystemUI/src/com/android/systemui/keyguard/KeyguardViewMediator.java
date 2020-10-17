@@ -75,6 +75,7 @@ import com.android.internal.policy.IKeyguardDrawnCallback;
 import com.android.internal.policy.IKeyguardExitCallback;
 import com.android.internal.policy.IKeyguardStateCallback;
 import com.android.internal.util.LatencyTracker;
+import com.android.internal.util.reloaded.fod.FodUtils;
 import com.android.internal.widget.LockPatternUtils;
 import com.android.keyguard.KeyguardConstants;
 import com.android.keyguard.KeyguardDisplayManager;
@@ -769,7 +770,7 @@ public class KeyguardViewMediator extends SystemUI implements Dumpable {
                     mInGestureNavigationMode = QuickStepContract.isGesturalMode(mode);
                 }));
         PackageManager packageManager = context.getPackageManager();
-        mHasFod = packageManager.hasSystemFeature(FOD);
+        mHasFod = FodUtils.hasFodSupport(context);
     }
 
     public void userActivity() {

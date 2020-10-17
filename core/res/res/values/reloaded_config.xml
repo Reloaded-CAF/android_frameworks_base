@@ -56,4 +56,7 @@
     <!-- Default value for Horizon light color (Blue) -->
     <integer name="config_AmbientPulseLightColor">0x3980FF</integer>
 
+    <!-- Whether to show a custom view for FOD -->
+    <bool name="config_needCustomFODView">false</bool>
+
 </resources>
