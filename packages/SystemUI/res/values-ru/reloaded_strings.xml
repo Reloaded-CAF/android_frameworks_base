@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright 2019-2020 The ReloadedOS Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- Reloaded Tuner -->
+    <string name="reloaded_tuner_title">Настройки Reloaded</string>
+    <string name="reloaded_tuner_summary">Настройте свое устройство</string>
+
+    <!-- Status bar -->
+    <string name="status_bar_icons">Иконки в строке состояния</string>
+    <string name="use_old_mobiletype_title">Использовать старый стиль сигнала</string>
+    <string name="use_old_mobiletype_summary">Объединить значки сигнала и типа сигнала</string>
+    <string name="status_bar_quick_qs_pulldown_title">Быстрое раскрытие панели быстрого доступа</string>
+    <string name="status_bar_quick_qs_pulldown_off">Отключено</string>
+    <string name="status_bar_quick_qs_pulldown_left">Слева</string>
+    <string name="status_bar_quick_qs_pulldown_right">Справа</string>
+    <string name="status_bar_quick_qs_pulldown_always">Везде</string>
+    <string name="show_fourg_icon_title">Включить иконку 4G</string>
+    <string name="show_fourg_icon_summary">Отображать значок 4G вместо значка LTE</string>
+    <string name="show_volte_icon_title">Включить иконку VoLTE</string>
+    <string name="status_bar_show_battery_percent_title">Процент заряда батареи</string>
+    <string name="status_bar_show_battery_percent_summary">Показать процент заряда батареи в строке состояния</string>
+
+    <!-- Advanced reboot -->
+    <string name="global_action_reboot">Перезагрузка</string>
+    <string name="global_action_reboot_more">Перезагрузка\u2026</string>
+    <string name="global_action_reboot_sub">System</string>
+    <string name="global_action_reboot_recovery">Рекавери</string>
+    <string name="global_action_reboot_bootloader">Загрузчик</string>
+
+    <!-- Power Menu -->
+    <string name="power_menu_title">Меню питания</string>
+    <string name="global_actions_advanced_reboot_title">Расширенное меню перезагиузки</string>
+    <string name="global_actions_advanced_reboot_summary">Показать кнопки рекавери и загрузчика для перезагрузки</string>
+
+    <!-- Double tap to sleep -->
+    <string name="double_tap_to_sleep_title">Нажмите дважды, чтобы сна</string>
+    <string name="double_tap_to_sleep_summary">Дважды нажмите на строку состояния, чтобы перевести устройство в спящий режим.</string>
+    <string name="double_tap_sleep_lockscreen_title">Нажмите дважды, чтобы сна</string>
+    <string name="double_tap_sleep_lockscreen_summary">Дважды коснитесь экрана блокировки в любом месте, чтобы перевести устройство в спящий режим.</string>
+
+    <!-- Lockscreen -->
+    <string name="lockscreen_clock">Часы на экране блокировки</string>
+    <string name="lockscreen_power_menu_disabled_title">Отключить меню питания на экране бловкировки</string>
+    <string name="lockscreen_power_menu_disabled_summary">Отключить меню питания на безопасных экранах блокировки</string>
+    <string name="lockscreen_qs_disabled_title">Отключить быстрые настройки на экране блокировки</string>
+    <string name="lockscreen_qs_disabled_summary">Отключить раскрытие быстрых настроек на безопасных экранах блокировки</string>
+    <string name="lockscreen_battery_info_title">Информация о зарядке на экране блокировки</string>
+    <string name="lockscreen_battery_info_summary">Отображение зарядного тока, напряжения и температуры батареи</string>
+
+    <!-- Fingerprint authentication vibration -->
+    <string name="fingerprint_success_vib_title">Аутентификация по отпечатку пальца</string>
+    <string name="fingerprint_success_vib_summary">Вибрация при успешной аутентификации по отпечатку пальца</string>
+
+    <!-- navbar editor -->
+    <string name="preview">Предварительный просмотр</string>
+    <string name="keycode">Код кнопки</string>
+    <string name="no_home_title">Кнопка \"Домой\" не найдена</string>
+    <string name="no_home_message">Для навигации по этому устройству требуется кнопка \"Домой\". Пожалуйста, добавьте кнопку домой перед сохранением.</string>
+    <string name="clipboard_description">Буфер обмена позволяет перетаскивать элементы прямо в него. Элементы также можно перетаскивать прямо из буфера обмена, если они есть.</string>
+    <string name="keycode_description">Кнопки с кодами клавиш позволяют добавлять клавишу клавиатуры на панель навигации. При нажатии они имитируют выбранную клавишу клавиатуры. Сначала необходимо выбрать ключ для кнопки, а затем изображение, которое будет отображаться на кнопке.</string>
+    <string name="start">Начало</string>
+    <string name="center">Центр</string>
+    <string name="end">Конец</string>
+    <string name="space">Разделитель</string>
+    <string name="menu_ime">Переключатель меню / клавиатуры</string>
+    <string name="select_button">Выберите кнопку для добавления</string>
+    <string name="add_button">Добавить кнопку</string>
+    <string name="save">Сохранить</string>
+    <string name="reset">Сброс</string>
+    <string name="select_keycode">Выбрать кнопку клавиатурыn</string>
+    <string name="left">Влево</string>
+    <string name="right">Вправо</string>
+    <string name="navbar_editor_title">Редактор</string>
+    <string name="navbar_editor_summary">Настроить панель навигации</string>
+
+    <!-- Caffeine QS Tile -->
+    <string name="quick_settings_caffeine_label">Кофеин</string>
+    <string name="accessibility_quick_settings_caffeine_off">Переход в спящий режим разрешен</string>
+    <string name="accessibility_quick_settings_caffeine_on">Переход в спящий режим запрещен</string>
+
+    <!-- Heads up QS tile -->
+    <string name="quick_settings_heads_up_label">Всплывающие уведомлени</string>
+    <string name="accessibility_quick_settings_heads_up_off">Выключение всплывающх уведомлений</string>
+    <string name="accessibility_quick_settings_heads_up_on">Включение всплывающих уведомлений</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">Всплывающие уведомления выключены</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">Всплывающие уведомления включены</string>
+
+    <!-- Sync QS tile -->
+    <string name="quick_settings_sync_label">Синхронизация</string>
+    <string name="accessibility_quick_settings_sync_off">Выключение синхронизации</string>
+    <string name="accessibility_quick_settings_sync_on">Включение синхронизации</string>
+    <string name="accessibility_quick_settings_sync_changed_off">Синхронизация выключена</string>
+    <string name="accessibility_quick_settings_sync_changed_on">Синхронизация включена</string>
+
+    <!-- Screenshot QS tile -->
+    <string name="quick_settings_screenshot_label">Снимок экрана</string>
+    <string name="quick_settings_full_screenshot_label">Полный</string>
+    <string name="quick_settings_region_screenshot_label">Частичный</string>
+
+    <!-- Lights -->
+    <string name="tuner_lights">Индикатор уведомлений</string>
+    <string name="tuner_notification_lights_title">Включить индикатор уведомлений</string>
+    <string name="tuner_notification_lights_summary">Мигать при входящих уведомлениях</string>
+    <string name="tuner_battery_lights_title">Включить индикатор батареи</string>
+    <string name="tuner_battery_lights_summary">Включите индикатор уведомлений во время зарядки или разрядки аккумулятора</string>
+
+    <!-- Network traffic -->
+    <string name="tuner_network_traffic_category">Индикатор сетевого трафика</string>
+    <string name="tuner_network_traffic_mode_title">Режим отображения</string>
+    <string name="tuner_network_traffic_mode_disabled">Отключен</string>
+    <string name="tuner_network_traffic_mode_statusbar">Срока состояния</string>
+    <string name="tuner_network_traffic_mode_expanded">Раскрытые быстрые настройки</string>
+    <string name="tuner_network_traffic_autohide_title">Автоматическое скрытие</string>
+    <string name="tuner_network_traffic_autohide_summary">Скрыть индикатортрафика, когда нет активности</string>
+
+</resources>
