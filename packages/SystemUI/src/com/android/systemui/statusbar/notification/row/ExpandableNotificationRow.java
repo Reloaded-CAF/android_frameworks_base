@@ -23,6 +23,7 @@ import static com.android.systemui.statusbar.notification.row.NotificationConten
 import static com.android.systemui.statusbar.notification.row.NotificationContentView.VISIBLE_TYPE_CONTRACTED;
 import static com.android.systemui.statusbar.notification.row.NotificationContentView.VISIBLE_TYPE_HEADSUP;
 
+import android.app.AppLockManager;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
@@ -30,6 +31,8 @@ import android.animation.ValueAnimator.AnimatorUpdateListener;
 import android.annotation.NonNull;
 import android.annotation.Nullable;
 import android.app.NotificationChannel;
+import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -327,6 +330,10 @@ public class ExpandableNotificationRow extends ActivatableNotificationView
     private SystemNotificationAsyncTask mSystemNotificationAsyncTask =
             new SystemNotificationAsyncTask();
 
+    private boolean mAppOpen;
+    private boolean mIsAppLocked;
+    private boolean mIsAlarmOrCall;
+
     /**
      * Returns whether the given {@code statusBarNotification} is a system notification.
      * <b>Note</b>, this should be run in the background thread if possible as it makes multiple IPC
@@ -445,6 +452,19 @@ public class ExpandableNotificationRow extends ActivatableNotificationView
     public void setEntry(@NonNull NotificationEntry entry) {
         mEntry = entry;
         mStatusBarNotification = entry.notification;
+        if (mStatusBarNotification != null) {
+            updateAlarmOrCall();
+            AppLockManager appLockManager = (AppLockManager) mContext
+                    .getSystemService(Context.APPLOCK_SERVICE);
+            final String pkg = mStatusBarNotification.getPackageName();
+            mIsAppLocked = appLockManager.isAppLocked(pkg);
+            if (mIsAppLocked) {
+                mAppOpen = appLockManager.isAppOpen(pkg) || !appLockManager
+                            .getAppNotificationHide(pkg);
+            }
+            if (mIsAppLocked) Log.d(TAG, "setEntry() app:" + mAppName
+                    + " mAppOpen:" + mAppOpen + " mIsAlarmOrCall:" + mIsAlarmOrCall);
+        }
         cacheIsSystemNotification();
     }
 
@@ -2318,7 +2338,7 @@ public class ExpandableNotificationRow extends ActivatableNotificationView
             return mGuts.getIntrinsicHeight();
         } else if ((isChildInGroup() && !isGroupExpanded())) {
             return mPrivateLayout.getMinHeight();
-        } else if (mSensitive && mHideSensitiveForIntrinsicHeight) {
+        } else if (shouldShowPublic()) {
             return getMinHeight();
         } else if (mIsSummaryWithChildren) {
             return mChildrenContainer.getIntrinsicHeight();
@@ -2342,7 +2362,7 @@ public class ExpandableNotificationRow extends ActivatableNotificationView
      *         except for legacy use cases.
      */
     public boolean canShowHeadsUp() {
-        if (mOnKeyguard && !isDozing() && !isBypassEnabled()) {
+        if (mOnKeyguard && !isDozing() && !isBypassEnabled() || (mIsAppLocked && !mAppOpen)) {
             return false;
         }
         return true;
@@ -2513,7 +2533,8 @@ public class ExpandableNotificationRow extends ActivatableNotificationView
             return;
         }
         boolean oldShowingPublic = mShowingPublic;
-        mShowingPublic = mSensitive && hideSensitive;
+        mShowingPublic = (mSensitive && hideSensitive) || (mIsAppLocked && !mAppOpen
+                && !mIsAlarmOrCall);
         if (mShowingPublicInitialized && mShowingPublic == oldShowingPublic) {
             return;
         }
@@ -2574,6 +2595,51 @@ public class ExpandableNotificationRow extends ActivatableNotificationView
         }
     }
 
+    public void onAppStateChanged(boolean open) {
+        if (mAppOpen != open) {
+            mAppOpen = open;
+            setHideSensitive(mSensitive, true, 0, 100);
+        }
+    }
+
+    public void setAppLocked(boolean locked) {
+        mIsAppLocked = locked;
+    }
+
+    public boolean isAppLocked() {
+        return mIsAppLocked;
+    }
+
+    public boolean blockHeadsUp() {
+        if (mIsAppLocked) Log.d(TAG, "blockHeadsUp() app:" + mAppName
+                + " mAppOpen:" + mAppOpen + " mIsAlarmOrCall:" + mIsAlarmOrCall);
+        return mIsAppLocked && !mAppOpen && !mIsAlarmOrCall;
+    }
+
+    private void updateAlarmOrCall() {
+        PendingIntent intent = mStatusBarNotification.getNotification().contentIntent;
+        if (intent == null) {
+            mIsAlarmOrCall = false;
+            return;
+        }
+
+        ComponentName cmp = intent.getIntent().getComponent();
+        if (cmp != null) {
+            String intentClassName = cmp.getClassName().toLowerCase();
+            mIsAlarmOrCall = intentClassName.contains("callactivity")
+                                || intentClassName.contains("callingactivity")
+                                || intentClassName.contains("voipactivity")
+                                || intentClassName.contains("alarmactivity");
+        } else {
+            intent = mStatusBarNotification.getNotification().fullScreenIntent;
+            if (intent != null) {
+                mIsAlarmOrCall = true;
+            } else {
+                mIsAlarmOrCall = false;
+            }
+        }
+    }
+
     @Override
     public boolean mustStayOnScreen() {
         return mIsHeadsUp && mMustStayOnScreen;
@@ -2589,7 +2655,8 @@ public class ExpandableNotificationRow extends ActivatableNotificationView
     }
 
     private boolean shouldShowPublic() {
-        return mSensitive && mHideSensitiveForIntrinsicHeight;
+        return (mSensitive && mHideSensitiveForIntrinsicHeight) || (mIsAppLocked && !mAppOpen
+                && !mIsAlarmOrCall);
     }
 
     public void makeActionsVisibile() {

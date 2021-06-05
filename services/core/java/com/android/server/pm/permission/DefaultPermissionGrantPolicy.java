@@ -657,6 +657,10 @@ public final class DefaultPermissionGrantPolicy {
                 getDefaultSystemHandlerActivityPackage(musicIntent, userId), userId,
                 STORAGE_PERMISSIONS);
 
+        // Google Markup
+        grantSystemFixedPermissionsToSystemPackage("com.google.android.markup", userId,
+                STORAGE_PERMISSIONS);
+
         // Home
         Intent homeIntent = new Intent(Intent.ACTION_MAIN)
                 .addCategory(Intent.CATEGORY_HOME)

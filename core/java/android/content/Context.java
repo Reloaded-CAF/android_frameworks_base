@@ -4686,6 +4686,22 @@ public abstract class Context {
     public static final String DYNAMIC_SYSTEM_SERVICE = "dynamic_system";
 
     /**
+     * Long screenshot
+     * @hide
+     */
+    public static final String LONGSCREENSHOT_SERVICE = "longshot";
+
+    /**
+     * Use with {@link #getSystemService} to retrieve a
+     * {@link android.app.AppLockManager} for accessing and setting locked apps state.
+     *
+     * @hide
+     * @see #getSystemService
+     * @see android.app.AppLockManager
+     */
+    public static final String APPLOCK_SERVICE = "applock";
+
+    /**
      * Determine whether the given permission is allowed for a particular
      * process and user ID running in the system.
      *

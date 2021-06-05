@@ -72,6 +72,7 @@ import android.view.contentcapture.ContentCaptureManager;
 import android.view.inputmethod.InputMethodSystemProperty;
 
 import com.android.internal.R;
+import com.android.internal.custom.longshot.LongScreenshotManagerService;
 import com.android.internal.logging.MetricsLogger;
 import com.android.internal.notification.SystemNotificationChannels;
 import com.android.internal.os.BinderInternal;
@@ -156,6 +157,7 @@ import com.android.server.usage.UsageStatsService;
 import com.android.server.vr.VrManagerService;
 import com.android.server.webkit.WebViewUpdateService;
 import com.android.server.wm.ActivityTaskManagerService;
+import com.android.server.wm.AppLockService;
 import com.android.server.wm.WindowManagerGlobalLock;
 import com.android.server.wm.WindowManagerService;
 
@@ -1098,8 +1100,16 @@ public final class SystemServer {
             mSystemServiceManager.startService(ActivityTriggerService.class);
             traceEnd();
 
+            traceBeginAndSlog("StartAppLockService");
+            mSystemServiceManager.startService(AppLockService.class);
+            traceEnd();
+
             traceBeginAndSlog("SignedConfigService");
             SignedConfigService.registerUpdateReceiver(mSystemContext);
+            traceEnd();
+
+            traceBeginAndSlog("LongScreenshotManagerService");
+            ServiceManager.addService(Context.LONGSCREENSHOT_SERVICE, LongScreenshotManagerService.getInstance(context));
             traceEnd();
         } catch (RuntimeException e) {
             Slog.e("System", "******************************************");

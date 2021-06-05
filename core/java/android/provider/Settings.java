@@ -3571,6 +3571,13 @@ public final class Settings {
         public static final int SCREEN_BRIGHTNESS_MODE_AUTOMATIC = 1;
 
         /**
+         * Indicates whether we should only show the app lock view when the device is woken up
+         * Or always.
+         * @hide
+         */
+        public static final String APP_LOCK_SHOW_ONLY_ON_WAKE = "app_lock_show_only_on_wake";
+
+        /**
          * Control whether to enable adaptive sleep mode.
          * @hide
          */
@@ -4535,12 +4542,19 @@ public final class Settings {
         /** @hide */
         private static final Validator DOUBLE_TAP_SLEEP_LOCKSCREEN_VALIDATOR =
                 BOOLEAN_VALIDATOR;
-                
+
          /**
           * Disable Screenshot shutter sound
           * @hide
           */
         public static final String SCREENSHOT_SHUTTER_SOUND = "screenshot_shutter_sound";
+
+        /**
+         * Screenshod sound enable, This is the noise made when taking a screesnhot
+         * Defaults to 1 - sounds enabled
+         * @hide
+         */
+        public static final String SCREENSHOT_SOUND = "screenshot_sound";
 
         /** @hide */
         private static final Validator SCREENSHOT_SHUTTER_SOUND_VALIDATOR =
@@ -4792,6 +4806,27 @@ public final class Settings {
             NETWORK_TRAFFIC_AUTOHIDE,
             GESTURE_PILL_TOGGLE,
         };
+
+        /**
+         * @hide
+         */
+        public static final String SMART_CHARGING = "smart_charging";
+
+        /**
+         * @hide
+         */
+        public static final String SMART_CHARGING_RESET_STATS = "smart_charging_reset_stats";
+
+        /**
+         * @hide
+         */
+        public static final String SMART_CHARGING_LEVEL = "smart_charging_level";
+
+        /**
+         * @hide
+         */
+        public static final String SMART_CHARGING_RESUME_LEVEL = "smart_charging_resume_level";
+
 
         /**
          * Keys we no longer back up under the current schema, but want to continue to
@@ -8573,6 +8608,20 @@ public final class Settings {
                 BOOLEAN_VALIDATOR;
 
         /**
+         * Whether the torch launch gesture to long press the power button when the
+         * screen is off should be enabled.
+         *
+         * 0: disabled
+         * 1: long tap power for torch
+         * @hide
+         */
+        public static final String TORCH_POWER_BUTTON_GESTURE =
+                "torch_power_button_gesture";
+
+        private static final Validator TORCH_POWER_BUTTON_GESTURE_VALIDATOR =
+                NON_NEGATIVE_INTEGER_VALIDATOR;
+
+        /**
          * Whether the camera double twist gesture to flip between front and back mode should be
          * enabled.
          *
@@ -9360,6 +9409,7 @@ public final class Settings {
             SYNC_PARENT_SOUNDS,
             CAMERA_DOUBLE_TWIST_TO_FLIP_ENABLED,
             CAMERA_DOUBLE_TAP_POWER_GESTURE_DISABLED,
+            TORCH_POWER_BUTTON_GESTURE,
             SYSTEM_NAVIGATION_KEYS_ENABLED,
             QS_TILES,
             DOZE_ENABLED,
@@ -9530,6 +9580,8 @@ public final class Settings {
                     CAMERA_DOUBLE_TWIST_TO_FLIP_ENABLED_VALIDATOR);
             VALIDATORS.put(CAMERA_DOUBLE_TAP_POWER_GESTURE_DISABLED,
                     CAMERA_DOUBLE_TAP_POWER_GESTURE_DISABLED_VALIDATOR);
+            VALIDATORS.put(TORCH_POWER_BUTTON_GESTURE,
+                    TORCH_POWER_BUTTON_GESTURE_VALIDATOR);
             VALIDATORS.put(SYSTEM_NAVIGATION_KEYS_ENABLED,
                     SYSTEM_NAVIGATION_KEYS_ENABLED_VALIDATOR);
             VALIDATORS.put(QS_TILES, QS_TILES_VALIDATOR);
