@@ -1842,20 +1842,10 @@ public class AppOpsService extends IAppOpsService.Stub {
      * @return The mode of the op
      */
     private @Mode int checkOperationUnchecked(int code, int uid, @NonNull String packageName,
-                boolean raw) {
+                boolean raw, boolean verify) {
         if (isOpRestrictedDueToSuspend(code, packageName, uid)) {
             return AppOpsManager.MODE_IGNORED;
         }
-
-        boolean isPrivileged;
-
-        try {
-            isPrivileged = verifyAndGetIsPrivileged(uid, packageName);
-        } catch (SecurityException e) {
-            Slog.e(TAG, "checkOperation", e);
-            return AppOpsManager.opToDefaultMode(code);
-        }
-
         synchronized (this) {
             if (isOpRestrictedLocked(uid, code, packageName, isPrivileged)) {
                 return AppOpsManager.MODE_IGNORED;
@@ -2772,8 +2762,7 @@ public class AppOpsService extends IAppOpsService.Stub {
         return pmi.isPackageSuspended(packageName, UserHandle.getUserId(uid));
     }
 
-    private boolean isOpRestrictedLocked(int uid, int code, String packageName,
-            boolean isPrivileged) {
+    private boolean isOpRestrictedLocked(int uid, int code, String packageName) {
         int userHandle = UserHandle.getUserId(uid);
         final int restrictionSetCount = mOpUserRestrictions.size();
 
