@@ -808,6 +808,9 @@ public class GnssLocationProvider extends AbstractLocationProvider implements
     }
 
     private void injectBestLocation(Location location) {
+        if (location.isFromMockProvider()) {
+            return;
+        }
         if (DEBUG) {
             Log.d(TAG, "injectBestLocation: " + location);
         }
@@ -914,6 +917,9 @@ public class GnssLocationProvider extends AbstractLocationProvider implements
     }
 
     private void handleUpdateLocation(Location location) {
+        if (location.isFromMockProvider()) {
+            return;
+        }
         if (location.hasAccuracy()) {
             if (DEBUG) {
                 Log.d(TAG, "injectLocation: " + location);
